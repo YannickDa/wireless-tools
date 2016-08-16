@@ -189,10 +189,10 @@ function parse_status_interface(callback) {
  */
 function status(interface, callback) {
   if (callback) {
-    this.exec('ifconfig ' + interface, parse_status_interface(callback));  
+    this.exec('sudo ifconfig ' + interface, parse_status_interface(callback));
   }
   else {
-    this.exec('ifconfig -a', parse_status(interface));  
+    this.exec('sudo ifconfig -a', parse_status(interface));
   }
 }
 
@@ -214,7 +214,7 @@ function status(interface, callback) {
  *
  */
 function down(interface, callback) {
-  return this.exec('ifconfig ' + interface + ' down', callback);
+  return this.exec('sudo ifconfig ' + interface + ' down', callback);
 }
 
 /**
@@ -236,12 +236,12 @@ function down(interface, callback) {
  * };
  *
  * ifconfig.up(options, function(err) {
- *   // the interface is up 
+ *   // the interface is up
  * });
  *
  */
 function up(options, callback) {
-  return this.exec('ifconfig ' + options.interface +
+  return this.exec('sudo ifconfig ' + options.interface +
     ' ' + options.ipv4_address +
     ' netmask ' + options.ipv4_subnet_mask +
     ' broadcast ' + options.ipv4_broadcast +

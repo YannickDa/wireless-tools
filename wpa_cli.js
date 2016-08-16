@@ -192,7 +192,7 @@ function parse_scan_results(block) {
     var match;
     var results = [];
     var lines;
-    
+
     lines = block.split('\n').map(function(item) { return item + "\n"; });
     lines.forEach(function(entry){
         var parsed = {};
@@ -298,17 +298,17 @@ function parse_scan_results_interface(callback) {
  *
  */
 function status(interface, callback) {
-    var command = [ 'wpa_cli -i', interface, 'status'].join(' ');
+    var command = [ 'sudo', 'wpa_cli -i', interface, 'status'].join(' ');
     return this.exec(command, parse_status_interface(callback));
 }
 
 function bssid(interface, ap, ssid, callback) {
-    var command = ['wpa_cli -i', interface, 'bssid', ssid, ap].join(' ');
+    var command = ['sudo', 'wpa_cli -i', interface, 'bssid', ssid, ap].join(' ');
     return this.exec(command, parse_command_interface(callback));
 }
 
 function reassociate(interface, callback) {
-    var command = ['wpa_cli -i',
+    var command = ['sudo', 'wpa_cli -i',
                  interface,
                  'reassociate'].join(' ');
 
@@ -327,7 +327,7 @@ function reassociate(interface, callback) {
 */
 
 function set(interface, variable, value, callback) {
-    var command = ['wpa_cli -i',
+    var command = ['sudo', 'wpa_cli -i',
                  interface,
                  'set',
                  variable,
@@ -337,7 +337,7 @@ function set(interface, variable, value, callback) {
 }
 
 function add_network(interface, callback) {
-    var command = ['wpa_cli -i',
+    var command = ['sudo', 'wpa_cli -i',
                  interface,
                  'add_network' ].join(' ');
 
@@ -345,7 +345,7 @@ function add_network(interface, callback) {
 }
 
 function set_network(interface, id, variable, value, callback) {
-    var command = ['wpa_cli -i',
+    var command = ['sudo', 'wpa_cli -i',
                  interface,
                  'set_network',
                  id,
@@ -356,7 +356,7 @@ function set_network(interface, id, variable, value, callback) {
 }
 
 function enable_network(interface, id, callback) {
-    var command = ['wpa_cli -i',
+    var command = ['sudo', 'wpa_cli -i',
                  interface,
                  'enable_network',
                  id ].join(' ');
@@ -365,7 +365,7 @@ function enable_network(interface, id, callback) {
 }
 
 function disable_network(interface, id, callback) {
-    var command = ['wpa_cli -i',
+    var command = ['sudo', 'wpa_cli -i',
                  interface,
                  'disable_network',
                  id ].join(' ');
@@ -374,7 +374,7 @@ function disable_network(interface, id, callback) {
 }
 
 function remove_network(interface, id, callback) {
-    var command = ['wpa_cli -i',
+    var command = ['sudo', 'wpa_cli -i',
                  interface,
                  'remove_network',
                  id ].join(' ');
@@ -383,7 +383,7 @@ function remove_network(interface, id, callback) {
 }
 
 function select_network(interface, id, callback) {
-    var command = ['wpa_cli -i',
+    var command = ['sudo', 'wpa_cli -i',
         interface,
         'select_network',
         id ].join(' ');
@@ -392,7 +392,7 @@ function select_network(interface, id, callback) {
 }
 
 function scan(interface, callback) {
-    var command = ['wpa_cli -i',
+    var command = ['sudo', 'wpa_cli -i',
         interface,
         'scan'].join(' ');
 
@@ -400,7 +400,7 @@ function scan(interface, callback) {
 }
 
 function scan_results(interface, callback) {
-    var command = ['wpa_cli -i',
+    var command = ['sudo', 'wpa_cli -i',
         interface,
         'scan_results'].join(' ');
 
@@ -408,7 +408,7 @@ function scan_results(interface, callback) {
 }
 
 function save_config(interface, callback) {
-    var command = ['wpa_cli -i',
+    var command = ['sudo', 'wpa_cli -i',
         interface,
         'save_config'].join(' ');
 

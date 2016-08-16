@@ -56,7 +56,7 @@ function expand_r(options, lines, prefix) {
     if (Array.isArray(value)) {
       value.forEach(function(val) {
         lines.push(full.concat(val).join(' '));
-      });      
+      });
     }
     else if (typeof(value) == 'object') {
       expand_r(value, lines, full);
@@ -108,7 +108,7 @@ function expand(options) {
  * };
  *
  * udhcpd.enable(options, function(err) {
- *   // the dhcp server was started 
+ *   // the dhcp server was started
  * });
  *
  */
@@ -136,11 +136,11 @@ function enable(options, callback) {
  * var udhcpd = require('wireless-tools/udhcpd');
  *
  * udhcpd.disable('wlan0', function(err) {
- *   // the dhcp server was stopped 
+ *   // the dhcp server was stopped
  * });
  *
  */
 function disable(interface, callback) {
   var file = interface + '-udhcpd.conf';
-  return this.exec('kill `pgrep -f "^udhcpd ' + file + '"` || true', callback);
+  return this.exec('sudo kill `pgrep -f "^udhcpd ' + file + '"` || true', callback);
 }

@@ -176,10 +176,10 @@ function parse_status_interface(callback) {
  */
 function status(interface, callback) {
   if (callback) {
-    return this.exec('iwconfig ' + interface,
+    return this.exec('sudo iwconfig ' + interface,
       parse_status_interface(callback));
   }
   else {
-    return this.exec('iwconfig', parse_status(interface));
+    return this.exec('sudo iwconfig', parse_status(interface));
   }
 }

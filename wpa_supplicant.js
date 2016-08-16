@@ -57,7 +57,7 @@ var wpa_supplicant = module.exports = {
  *
  */
 function disable(interface, callback) {
-  var command = 'kill `pgrep -f "wpa_supplicant -i ' +
+  var command = 'sudo kill `pgrep -f "wpa_supplicant -i ' +
     interface + ' .*"` || true';
 
   return this.exec(command, callback);
@@ -91,9 +91,9 @@ function disable(interface, callback) {
 function enable(options, callback) {
   var file = options.interface + '-wpa_supplicant.conf';
 
-  var command = 'wpa_passphrase "' + options.ssid + '" "' + options.passphrase
-    + '" > ' + file + ' && wpa_supplicant -i ' + options.interface + ' -B -D '
-    + options.driver + ' -c ' + file + ' && rm -f ' + file;
+  var command = 'sudo wpa_passphrase "' + options.ssid + '" "' + options.passphrase
+    + '" > ' + file + ' && sudo wpa_supplicant -i ' + options.interface + ' -B -D '
+    + options.driver + ' -c ' + file + ' && sudo rm -f ' + file;
 
   return this.exec(command, callback);
 }
@@ -109,7 +109,7 @@ function enable(options, callback) {
  */
 function manual(options, callback) {
   var command = [
-    'wpa_supplicant',
+    'sudo wpa_supplicant',
     '-i', options.interface,
     '-s -B -P /run/wpa_supplicant/' + options.interface + '.pid',
     '-D', options.drivers.join(','),

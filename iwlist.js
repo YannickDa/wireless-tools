@@ -306,5 +306,5 @@ function scan(options, callback) {
     extra_params = ' essid ' + options.ssid;
   }
 
-  this.exec('iwlist ' + interface + ' scan' + extra_params, parse_scan(show_hidden, callback));
+  this.exec('sudo iwlist ' + interface + ' scan' + extra_params, parse_scan(show_hidden, callback));
 }
